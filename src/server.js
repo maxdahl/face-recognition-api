@@ -2,16 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
-const dbCreds = require('./db')
+//const dbCreds = require('./db')
+
 
 const db = require('knex')({
 	client: 'pg',
-	connection: {
-		host: dbCreds.host,
-		user: dbCreds.user,
-		password: dbCreds.password,
-		database: dbCreds.database
-	}
+	// connection: {
+	// 	host: dbCreds.host,
+	// 	user: dbCreds.user,
+	// 	password: dbCreds.password,
+	// 	database: dbCreds.database
+	// }
+	connection: process.env.DATABASE_URL
 });
 
 const app = express();
