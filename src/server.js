@@ -16,17 +16,6 @@ const db = require('knex')({
 
 const app = express();
 
-const findUserById = (id) => {
-	let user = false;
-	db.users.forEach(u => {
-		if(u.id == id) {
-			user = u;
-		} 
-	});
-
-	return user;
-}
-
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -113,6 +102,7 @@ app.get('/profile/:id', (req, res) => {
 	});
 });
 
-app.listen(3000, () => {
-	console.log('app is running on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+	console.log('app is running on port ' + port);
 });
